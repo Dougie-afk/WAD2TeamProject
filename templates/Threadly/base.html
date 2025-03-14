@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Threadyly - </title>
+        {% block title_block %}
+            This is the title block
+        {% endblock %}
+
+        <style> </style>
+        {% block style_block %}
+            This is the style block
+        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
+
+    <body>
+        <section id="nav">
+            <h1 style="display: inline">Threadly | </h1><a>This is a link</a> <a>This is a link</a> <a>This is a link</a>
+        </section>
+        <section id="mainSection"></section>
+    </body>
+</html>
