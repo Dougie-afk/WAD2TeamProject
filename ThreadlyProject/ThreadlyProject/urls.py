@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.urls import include
+from Threadly import views
+import Threadly.urls
 urlpatterns = [
+    path('Threadly/',include(Threadly.urls)),
+    path('',views.hi,name='hi'),
     path('admin/', admin.site.urls),
+
 ]
