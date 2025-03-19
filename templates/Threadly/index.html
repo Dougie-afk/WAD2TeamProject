@@ -8,6 +8,18 @@
 {% block body_block %}
     <h1>Threadly</h1>
     <div>
-        Hello, and welcome to threadly :3
+        <h1>Welcome to Threadly</h1>
+        <br>
+        <p>Threadly is a simple space to share thoughts and ideas. You can create threads, share ideas, and reply to others. To start, just sign up!</p>
+        <h3>Top Categories</h3>
+    {% if categories %}
+        <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'Threadly:show_category' category.slug %}">{{ category.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <strong>There are no categories present</strong>
+    {% endif %}
     </div>
 {% endblock %}

@@ -3,10 +3,28 @@ body, html {
     background-color: cadetblue;
 }
 
-#mainDiv {
+.post_photo {
+    width: 90%;
+    align-self: center;
+}
+
+#main_div {
     background-color: aquamarine;
     width: 80%;
     margin: auto;
     padding: 5px;
     padding-top: 0px;
+    text-align: center;
+}
+
+#login_form {
+    display: inline;
+    width: 60%;
+    margin: auto;
+}
+
+#login_form_image {
+    display: inline;
+    width: 30%;
+    margin: auto;
 }
