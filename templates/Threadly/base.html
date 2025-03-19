@@ -2,7 +2,7 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Threadyly - </title>
+        <title>Threadly - </title>
         {% block title_block %}
             This is the title block
         {% endblock %}
@@ -18,6 +18,10 @@
         <section id="nav">
             <h1 style="display: inline">Threadly | </h1><a>This is a link</a> <a>This is a link</a> <a>This is a link</a>
         </section>
-        <section id="mainSection"></section>
+        <section id="main_div">
+            {% block body_block %}
+                This is the body block's default content. If you're seeing this, something's gone wrong.
+            {% endblock %}
+        </section>
     </body>
 </html>
