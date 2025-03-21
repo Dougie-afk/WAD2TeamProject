@@ -2,16 +2,15 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Threadly - </title>
+        <title>Threadly - 
         {% block title_block %}
             This is the title block
         {% endblock %}
+        </title>
+        
 
-        <style> </style>
-        {% block style_block %}
-            This is the style block
-        {% endblock %}
-        <link rel="stylesheet" type="text/css" href="static/style.css">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     </head>
 
     <body>
