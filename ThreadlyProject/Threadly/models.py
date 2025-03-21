@@ -21,7 +21,7 @@ class User(models.Model):
     userID = models.AutoField(primary_key=True)
     profilePictureURL = models.URLField()
     follows = models.ManyToManyField(Thread, blank=True)
-    password= models.CharField(max_length=128)
+    
 
     def __str__(self):
         return self.username

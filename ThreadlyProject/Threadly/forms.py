@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, Post, Comments
 
-# User Registration Form
+
 class UserForm(forms.ModelForm):
     username = forms.CharField(max_length=32, help_text="Enter your username.")
     profile_picture = forms.URLField(required=False, help_text="Enter your profile picture URL.")
@@ -11,8 +11,6 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'profile_picture', 'password')
 
-
-# Post Form
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=100, help_text="Enter the post title.")
     content = forms.CharField(widget=forms.Textarea, help_text="Enter the post content.")
@@ -23,8 +21,6 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'content', 'image', 'thread')
 
-
-# Comment Form
 class CommentForm(forms.ModelForm):
     content = forms.CharField(help_text="Enter your comment.")
 

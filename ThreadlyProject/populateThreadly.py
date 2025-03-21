@@ -30,5 +30,4 @@ def populate_data():
 
     print("Data populated successfully!")
 
-# Run the population script
 populate_data()
