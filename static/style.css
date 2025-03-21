@@ -8,6 +8,8 @@ body, html {
     align-self: center;
 }
 
+
+
 #main_div {
     background-color: aquamarine;
     width: 80%;
@@ -27,4 +29,10 @@ body, html {
     display: inline;
     width: 30%;
     margin: auto;
+}
+#navigation {
+    width: 100%;
+    background-color: grey;
+    height: 40px;
+    margin: 0;
 }
