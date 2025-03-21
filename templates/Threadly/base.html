@@ -2,22 +2,29 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Threadly - </title>
+        <title>Threadly - 
         {% block title_block %}
             This is the title block
         {% endblock %}
+        </title>
+        
+        <style>
+            #navigation {
+                width: 100%;
+                background-color: grey;
+                height: 40px;
+                margin: 0;
+            }
+        </style>
 
-        <style> </style>
-        {% block style_block %}
-            This is the style block
-        {% endblock %}
-        <link rel="stylesheet" type="text/css" href="static/style.css">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     </head>
 
     <body>
-        <section id="nav">
+        <div id="navigation">
             <h1 style="display: inline">Threadly | </h1><a>This is a link</a> <a>This is a link</a> <a>This is a link</a>
-        </section>
+        </div>
         <section id="main_div">
             {% block body_block %}
                 This is the body block's default content. If you're seeing this, something's gone wrong.
