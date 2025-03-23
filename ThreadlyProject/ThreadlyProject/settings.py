@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 Initial_DIR= os.path.dirname(BASE_DIR)
 TEMPLATE_DIR = os.path.join(Initial_DIR, 'templates')
 STATIC_DIR = os.path.join(Initial_DIR, 'static')
+AUTH_USER_MODEL = 'Threadly.User'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/

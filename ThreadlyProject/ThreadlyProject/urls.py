@@ -20,7 +20,6 @@ from Threadly import views
 import Threadly.urls
 urlpatterns = [
     path('Threadly/',include(Threadly.urls)),
-    path('',views.hi,name='hi'),
     path('admin/', admin.site.urls),
 
 ]

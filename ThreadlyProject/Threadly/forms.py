@@ -19,14 +19,14 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'image', 'thread')
+        fields = ('title', 'content', 'image', 'threadID')#Change thread to match the Post class threadID in the model
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(help_text="Enter your comment.")
 
     class Meta:
         model = Comments
-        fields = ('post', 'content')
+        fields = ('postID', 'content')#Change post to postID as above
 
 
 
