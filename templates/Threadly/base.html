@@ -23,7 +23,17 @@
 
     <body>
         <div id="navigation">
-            <h1 style="display: inline">Threadly | </h1><a>This is a link</a> <a>This is a link</a> <a>This is a link</a>
+            <h1 style="display: inline">Threadly | </h1>
+            <a href="{% url 'Threadly:index' %}">Home</a>
+            <a href="{% url 'Threadly:trending' %}">Trending</a>
+            <a href="{% url 'Threadly:search' %}">Search</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'Threadly:account' %}">Account</a>
+                <a href="{% url 'Threadly:logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'Threadly:login' %}">Login</a>
+                <a href="{% url 'Threadly:signup' %}">Sign Up</a>
+            {% endif %}
         </div>
         <section id="main_div">
             {% block body_block %}
