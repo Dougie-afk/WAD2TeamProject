@@ -7,11 +7,18 @@
 
 {% block body_block %}
     <div>
-        <h1>{{ title }}</h1>
-        <img class="post_photo" src="{{ photoContent }}">
-        <p>{{ content }}</p>
+        <h1>{{ post.title }}</h1>
+        <img class="post_photo" src="{{ post.photoContent }}">
+        <p>{{ post.content }}</p>
     </div>
     <div>
-        <!--Comments go in here when ready-->
+        {% if comments %}
+        <ul id="comments">
+            {% for comment in comments %}
+            <li>{{ category.content }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
     </div>
 {% endblock %}

@@ -3,7 +3,7 @@
 <h1>Trending Posts</h1>
 {% for post in posts %}
     <div>
-        <h3>{{ post.title }}</h3>
+        <a a href="{% url 'Threadly:show_post' post.postID %}">{{ post.title }}</a>
         <p>{{ post.content|truncatewords:30 }}</p>
         <p>Likes: {{ post.likes }}</p>
     </div>
