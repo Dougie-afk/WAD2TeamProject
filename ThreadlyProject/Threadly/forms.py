@@ -15,18 +15,18 @@ class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=100, help_text="Enter the post title.")
     content = forms.CharField(widget=forms.Textarea, help_text="Enter the post content.")
     image = forms.URLField(required=False, help_text="Enter an image URL for the post.")
-    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)  # Hidden field
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)  
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'image', 'threadID')#Change thread to match the Post class threadID in the model
+        fields = ('title', 'content', 'image', 'threadID')#
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(help_text="Enter your comment.")
 
     class Meta:
         model = Comments
-        fields = ('postID', 'content')#Change post to postID as above
+        fields = ('postID', 'content')
 
 
 
