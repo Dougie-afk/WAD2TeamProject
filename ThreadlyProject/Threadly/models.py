@@ -22,6 +22,9 @@ class Thread(models.Model):
             self.slug = unique_slug
         super().save(*args, **kwargs)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.title
 

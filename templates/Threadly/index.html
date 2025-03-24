@@ -13,9 +13,9 @@
         <p>Threadly is a simple space to share thoughts and ideas. You can create threads, share ideas, and reply to others. To start, just sign up!</p>
         <h3>Top Categories</h3>
     {% if categories %}
-        <ul>
+        <ul style="list-style-type: none; text-align: center;"> <!-- ISNT CENTERING -->
         {% for category in categories %}
-            <li><a href="{% url 'Threadly:show_category' category.slug %}">{{ category.name }}</a></li>
+            <li><a href="{% url 'Threadly:show_category' category.slug %}">{{ category.title }}</a></li> <!-- FIXED NOT SHOWING BUG -->
         {% endfor %}
         </ul>
     {% else %}
