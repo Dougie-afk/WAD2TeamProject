@@ -12,6 +12,13 @@
         <p>{{ content }}</p>
     </div>
     <div>
-        <!--Comments go in here when ready-->
+        {% if comments %}
+        <ul id="comments">
+            {% for comment in comments %}
+            <li>{{ category.content }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
     </div>
 {% endblock %}
