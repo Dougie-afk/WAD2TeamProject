@@ -5,6 +5,7 @@ from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
+
 def index(request):
     categories = Thread.objects.order_by('-threadID')[:5]  
     return render(request, 'Threadly/index.html', {'categories': categories})
