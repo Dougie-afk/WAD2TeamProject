@@ -7,9 +7,9 @@
 
 {% block body_block %}
     <div>
-        <h1>{{ title }}</h1>
-        <img class="post_photo" src="{{ photoContent }}">
-        <p>{{ content }}</p>
+        <h1>{{ post.title }}</h1>
+        <img class="post_photo" src="{{ post.photoContent }}">
+        <p>{{ post.content }}</p>
     </div>
     <div>
         {% if comments %}
