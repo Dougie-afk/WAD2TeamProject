@@ -5,6 +5,7 @@ from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
+import cloudinary.uploader
 
 def index(request):
     categories = Thread.objects.order_by('-threadID')[:5]  
@@ -59,10 +60,12 @@ def account(request):
 @login_required
 def create_post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.UserID = request.user
+            if request.FILES.get('image'):
+                post.photoContent = upload_image(request.FILES['image'])
             post.save()
             return redirect('Threadly:show_post', post_id=post.postID)
     else:
@@ -101,3 +104,8 @@ def follow_thread(request, thread_id):
     thread = get_object_or_404(Thread, threadID=thread_id)
     request.user.follows.add(thread)
     return redirect('Threadly:show_category', slug=thread.slug)
+
+# Image upload helper
+def upload_image(file):
+    result = cloudinary.uploader.upload(file)
+    return result['secure_url']

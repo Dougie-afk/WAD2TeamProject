@@ -29,6 +29,7 @@
             <a href="{% url 'Threadly:search' %}">Search</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'Threadly:account' %}">Account</a>
+                <a href="{% url 'Threadly:create_post' %}">Create Post</a>
                 <a href="{% url 'Threadly:logout' %}">Logout</a>
             {% else %}
                 <a href="{% url 'Threadly:login' %}">Login</a>
