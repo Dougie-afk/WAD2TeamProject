@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Threadly',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+CLOUDINARY = {
+    'cloud_name': 'djjtujdh9',
+    'api_key': '942628564732226',
+    'api_secret': '1lZdNVKH4TuCGjgDlfiUle4d0LU',
+}

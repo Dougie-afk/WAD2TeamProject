@@ -14,7 +14,7 @@ class UserForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=100, help_text="Enter the post title.")
     content = forms.CharField(widget=forms.Textarea, help_text="Enter the post content.")
-    image = forms.URLField(required=False, help_text="Enter an image URL for the post.")
+    image = forms.ImageField(required=False, help_text="Enter an image URL for the post.")
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)  
 
     class Meta:
