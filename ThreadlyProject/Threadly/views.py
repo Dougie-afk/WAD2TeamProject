@@ -76,7 +76,7 @@ def create_post(request):
 def show_category(request, slug):
     category = get_object_or_404(Thread, slug=slug)
     posts = Post.objects.filter(threadID=category).order_by('-postID')
-    return render(request, 'Threadly/categories.html', {'category': category, 'posts': posts})
+    return render(request, 'Threadly/category.html', {'category': category, 'posts': posts})
 
 # Displays individual posts and comments
 def show_post(request, post_id):
