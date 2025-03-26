@@ -24,7 +24,7 @@
     {% endif %}
     <p>Something to share? <a href="{% url 'Threadly:create_post' %}">Create a post!</a></p>
     {% if posts %}
-    <ul>
+    <ul class="invisible_list">
         {% for post in posts %}
         <li><a href="{% url 'Threadly:show_post' post.postID %}">{{ post.title }}</a></li>
         {% endfor %}

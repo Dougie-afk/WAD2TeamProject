@@ -3,6 +3,10 @@ body, html {
     background-color: lightgray;
 }
 
+div {
+    vertical-align: middle;
+}
+
 .category_list {
     text-align: left;
     list-style-type: none;
@@ -22,10 +26,15 @@ body, html {
 .post_comment_block {
     display: inline-block;
     width: 40%;
+    vertical-align: top;
 }
 
 .invisible_list {
     list-style-type: none;
+}
+
+#comments {
+    text-align: left;
 }
 
 #main_div {
