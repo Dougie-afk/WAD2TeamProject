@@ -1,0 +1,29 @@
+{% extends 'Threadly/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ user.username }}
+{% endblock %}
+
+{% block body_block %}
+ <h1>{{ user.username }}</h1>
+ 
+ <div class="profile_content_block">
+    <img src='{{ user.profilePictureURL }}' alt="User's profile picture">
+ </div>
+ <div class="profile_content_block">
+   {% if user.follows.exists  %}
+    <h3>Following:</h3>
+    <ul>
+      {% for thread in user.follows.all %}
+        <li style="list-style-type: none;">{{ thread.title }}</li>
+      {% endfor %}
+    </ul>
+      
+    {% else %}
+      <h3>Not following any Threads!</h3>
+    {% endif %}
+   
+ </div>
+ <h3>Last Logged in: {{ user.last_login }}</h3>
+{% endblock %}

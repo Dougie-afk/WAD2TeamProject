@@ -1,0 +1,15 @@
+{% extends 'Threadly/base.html' %}
+{% block title_block %}
+    Trending
+{% endblock %}
+
+{% block body_block %}
+<h1>Trending Posts</h1>
+{% for post in posts %}
+    <div>
+        <a a href="{% url 'Threadly:show_post' post.postID %}">{{ post.title }}</a>
+        <p>{{ post.content|truncatewords:30 }}</p>
+        <p>Likes: {{ post.likes }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'Threadly/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	Login
+{% endblock %}
+
+{% block body_block %}
+<div>
+    <br><br>
+    <div style="display: inline; float: left;">
+        <h1>Login</h1>
+        <form id="login_form" method="POST" action="{% url 'Threadly:login' %}">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+            <input type="submit" value="submit" />
+        </form>
+    </div>
+    <div style="display: inline;">
+        <img id="login_form_image" src="{% static 'images/login_form_image.jpg' %}" alt="Picture of a red spool of thread with a needle through it">
+    </div>
+</div>
+{% endblock %} 

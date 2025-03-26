@@ -1,0 +1,35 @@
+{% extends 'Threadly/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ category.title }}
+{% endblock %}
+
+
+{% block body_block %}
+    <!--Content-->
+    <h1>{{ category.title }}</h1>
+    <!-- Follow/Unfollow Button -->
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'Threadly:follow_thread' category.threadID %}">
+            {% csrf_token %}
+            {% if category in user.follows.all %}
+                <button type="submit" class="btn btn-danger">Unfollow</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Follow</button>
+            {% endif %}
+        </form>
+    {% else %}
+        <p><a href="{% url 'Threadly:login' %}">Log in</a> to follow this thread.</p>
+    {% endif %}
+    <p>Something to share? <a href="{% url 'Threadly:create_post' %}">Create a post!</a></p>
+    {% if posts %}
+    <ul>
+        {% for post in posts %}
+        <li><a href="{% url 'Threadly:show_post' post.postID %}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <strong>Sorry, there aren't any posts in this category. Could you be the first?</strong>
+    {% endif %}
+{% endblock %}
