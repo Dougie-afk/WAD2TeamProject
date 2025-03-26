@@ -1,0 +1,10 @@
+{% extends 'Threadly/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ user.username }}
+{% endblock %}
+
+{% block body_block %}
+ <h1>{{ user.username }}</h1>
+{% endblock %}
