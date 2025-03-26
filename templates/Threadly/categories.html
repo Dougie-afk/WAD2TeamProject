@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block body_block %}
+<h1>Categories</h1>
+<p>Here is the full list of categories on Threadly. Feel free to browse to your heart's content</p>
 {% if categories %}
-    <ul>
+    <ul class="invisible_list">
     {% for category in categories %}
         <li><a href="{% url 'Threadly:show_category' category.slug %}">{{ category.title }}</a></li>
     {% endfor %}

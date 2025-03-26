@@ -11,6 +11,10 @@ def index(request):
     categories = Thread.objects.order_by('-threadID')[:5]  
     return render(request, 'Threadly/index.html', {'categories': categories})
 
+def categories(request):
+    categories = Thread.objects.order_by('-threadID')  
+    return render(request, 'Threadly/categories.html', {'categories': categories})
+
 def signup(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)

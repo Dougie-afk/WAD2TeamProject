@@ -43,6 +43,7 @@
         <div id="navigation">
             <h1 class="navbar_element">Threadly | </h1>
             <a class="navbar_element" href="{% url 'Threadly:index' %}">Home</a>
+            <a class="navbar_element" href="{% url 'Threadly:categories' %}">Categories</a>
             <a class="navbar_element" href="{% url 'Threadly:trending' %}">Trending</a>
             {% if user.is_authenticated %}
                 <a class="navbar_element"" href="{% url 'Threadly:account' %}">Account</a>
