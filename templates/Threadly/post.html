@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	{{ title }}
+	{{ post.title }}
 {% endblock %}
 
 {% block body_block %}
@@ -10,12 +10,13 @@
         <h1>{{ post.title }}</h1>
         <img class="post_photo" src="{{ post.photoContent }}">
         <p>{{ post.content }}</p>
+        <!--Needs an add comment button-->
     </div>
     <div>
         {% if comments %}
         <ul id="comments">
             {% for comment in comments %}
-            <li>{{ category.content }}</li>
+            <li>{{ comment.content }}</li>
             {% endfor %}
         </ul>
         {% endif %}

@@ -5,21 +5,32 @@
 	Homepage
 {% endblock %}
 
+{% block style_block %}
+    .category_list {
+        text-align: left;
+        padding-left: 80px;
+    }
+{% endblock %}
+
 {% block body_block %}
     <h1>Threadly</h1>
     <div>
-        <h3>Welcome to Threadly</h3>
+        <h1>Welcome to Threadly</h1>
         <br>
         <p>Threadly is a simple space to share thoughts and ideas. You can create threads, share ideas, and reply to others. To start, just sign up!</p>
-        <h3>Top Categories</h3>
-    {% if categories %}
-        <ul style="list-style-type: none; text-align: center;"> <!-- ISNT CENTERING -->
-        {% for category in categories %}
-            <li><a href="{% url 'Threadly:show_category' category.slug %}">{{ category.title }}</a></li> <!-- FIXED NOT SHOWING BUG -->
-        {% endfor %}
-        </ul>
-    {% else %}
-        <strong>There are no categories present</strong>
-    {% endif %}
+        <hr style="display: none;">
+        <div style="display: inline-block;">
+            <h3  class="category_list">Top Categories</h3>
+        {% if categories %}
+            <ul class="category_list" style="list-style-type: none; vertical-align: middle;">
+            {% for category in categories %}
+                <li><a href="{% url 'Threadly:show_category' category.slug %}">{{ category.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>Sorry, there was a problem loading the categories</strong>
+        {% endif %}
+        </div>
+        <img style="display: inline-block; width: 40%; padding-left: 20%; vertical-align: middle;" src="{% static 'images/homepage_image.jpg' %}"
     </div>
 {% endblock %}

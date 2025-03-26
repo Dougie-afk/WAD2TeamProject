@@ -3,6 +3,10 @@ body, html {
     background-color: lightgray;
 }
 
+.category_list {
+    text-align: left;
+}
+
 .post_photo {
     width: 90%;
     align-self: center;

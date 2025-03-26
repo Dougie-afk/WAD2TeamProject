@@ -1,0 +1,20 @@
+{% extends 'Threadly/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ category.title }}
+{% endblock %}
+
+{% block body_block %}
+    <!--Content-->
+    <h1>{{ category.title }}</h1>
+    {% if posts %}
+    <ul>
+        {% for post in posts %}
+        <li><a href="{% url 'Threadly:show_post' post.postID %}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <strong>Sorry, there aren't any posts in this category. Could you be the first?</strong>
+    {% endif %}
+{% endblock %}

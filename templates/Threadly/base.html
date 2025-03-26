@@ -15,7 +15,12 @@
                 height: 40px;
                 margin: 0;
             }
-        </style>
+
+            
+            {% block style_block %}
+            
+            {% endblock %}
+        </style> <!--I know it's red, but I promise that's supposed to be like that -Liam-->
 
         
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
