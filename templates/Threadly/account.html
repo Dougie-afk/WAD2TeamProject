@@ -12,7 +12,11 @@
     <img src='{{ user.profilePictureURL }}' alt="User's profile picture">
  </div>
  <div class="profile_content_block">
-    <h3>Followers: {{ user.follows }}</h3>
+   {% if user.follows.exists  %}
+    <h3>Following: {{ user.follows }}</h3>
+    {% else %}
+      <h3>Not following any Threads!</h3>
+    {% endif %}
     <h3>Last Logged in: {{ user.last_login }}</h3>
  </div>
 {% endblock %}

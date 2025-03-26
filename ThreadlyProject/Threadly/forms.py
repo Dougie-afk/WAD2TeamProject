@@ -12,9 +12,9 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'profile_picture', 'password')
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(max_length=100, help_text="Enter the post title.")
-    content = forms.CharField(widget=forms.Textarea, help_text="Enter the post content.")
-    image = forms.ImageField(required=False, help_text="Enter an image URL for the post.")
+    title = forms.CharField(max_length=100)
+    content = forms.CharField(widget=forms.Textarea, max_length=1000,help_text="Enter the post content.")
+    image = forms.ImageField(required=False, help_text="Upload image (optional)")
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)  
 
     class Meta:
