@@ -26,6 +26,7 @@ div {
 .post_comment_block {
     display: inline-block;
     width: 40%;
+    vertical-align: top;
 }
 
 .invisible_list {
