@@ -34,6 +34,7 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, username, password=None, **extra_fields):
         if not username:
             raise ValueError("The Username field must be set")
+        extra_fields.pop('follows', None)
         user = self.model(username=username, **extra_fields)
         if password:
             user.set_password(password)
