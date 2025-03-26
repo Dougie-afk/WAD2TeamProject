@@ -13,10 +13,12 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
+            if request.FILES.get('profile_picture'):
+                user.profilePictureURL = upload_image(request.FILES['profile_picture'])
             user.save()
             login(request, user)
             return redirect('Threadly:index')

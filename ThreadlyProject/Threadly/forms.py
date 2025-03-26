@@ -5,7 +5,7 @@ from .models import User, Post, Comments
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(max_length=32, help_text="Enter your username.")
-    profile_picture = forms.URLField(required=False, help_text="Enter your profile picture URL.")
+    profile_picture = forms.ImageField(required=False, help_text="Upload your profile picture.")
     password = forms.CharField(max_length=128, widget=forms.PasswordInput, help_text="Enter a strong password.")
     class Meta:
         model = User
