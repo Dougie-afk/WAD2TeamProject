@@ -1,4 +1,9 @@
 {% extends 'Threadly/base.html' %}
+
+{% block title_block %}
+    Create a Post
+{% endblock %}
+
 {% block body_block %}
 <h1>Create post</h1>
 <form method="post" enctype="multipart/form-data">{% csrf_token %}{{ form.as_p }}<input type="submit" value="Post">
