@@ -5,6 +5,8 @@ body, html {
 
 .category_list {
     text-align: left;
+    list-style-type: none;
+    vertical-align: middle;
 }
 
 .post_photo {
@@ -20,6 +22,10 @@ body, html {
 .post_comment_block {
     display: inline-block;
     width: 40%;
+}
+
+.invisible_list {
+    list-style-type: none;
 }
 
 #main_div {

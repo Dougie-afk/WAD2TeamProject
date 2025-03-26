@@ -11,6 +11,7 @@ urlpatterns = [
     path('trending/', views.trending, name='trending'),
     path('search/', views.search, name='search'),
     path('account/', views.account, name='account'),
+    path('categories/', views.categories, name='categories'),
     path('create-post/', views.create_post, name='create_post'),
     path('category/<slug:slug>/', views.show_category, name='show_category'),
     path('post/<int:post_id>/', views.show_post, name='show_post'),

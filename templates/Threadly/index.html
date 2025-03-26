@@ -14,7 +14,6 @@
 
 {% block body_block %}
     <h1>Threadly</h1>
-    <div>
         <h1>Welcome to Threadly</h1>
         <br>
         <p>Threadly is a simple space to share thoughts and ideas. You can create threads, share ideas, and reply to others. To start, just sign up!</p>
@@ -28,9 +27,8 @@
             {% endfor %}
             </ul>
         {% else %}
-            <strong>Sorry, there was a problem loading the categories</strong>
+            <strong>Sorry, there was a problem loading the categories. Maybe refreshing the page would fix it?</strong>
         {% endif %}
         </div>
-        <img style="display: inline-block; width: 40%; padding-left: 20%; vertical-align: middle;" src="{% static 'images/homepage_image.jpg' %}"
-    </div>
+        <img style="display: inline-block; width: 40%; padding-left: 20%; vertical-align: middle;" src="{% static 'images/homepage_image.jpg' %}">
 {% endblock %}

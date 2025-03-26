@@ -6,32 +6,42 @@
 {% endblock %}
 
 {% block body_block %}
-    <div>
+    <section>
         <h1>{{ post.title }}</h1>
-        <img class="post_photo" src="{{ post.photoContent }}">
-        <p>{{ post.content }}</p>
-        <!--Needs an add comment button-->
-    </div>
-    <div class="post_comment_block">
-        <form id="add_comment" method="post">
-            <label for="comment_content">Something to say? Leave a comment here!</label><br>
-            <textarea id="comment_content"
-            name="comment_content"
-            rows="6"
-            cols="50">
-            </textarea><br>
-            <input type="submit" id="submit" value="Add Comment">
-        </form>
-    </div>
-    <div class="post_comment_block">
-        {% if comments %}
-        <h3>Comments:</h3>
-        <ul id="comments">
-            {% for comment in comments %}
-            <li>{{ comment.content }}</li>
-            {% endfor %}
-        </ul>
+        {% if post.photoContent %}
+            <img class="post_photo" src="{{ post.photoContent }}" alt="Post photo">
         {% endif %}
-
-    </div>
+        <p>{{ post.content }}</p>
+        <div>
+            <form id="like_button" method="post" action="">
+                <!--TODO: Give appropriate action to like the post-->
+                <input id="submit" type="submit" value="Like the post!">
+            </form>
+        </div>
+    </section>
+    <section>
+        <div class="post_comment_block">
+            <form id="add_comment" method="post" action="">
+                <!--TODO: Give appropriate action to add comment to post-->
+                <label for="comment_content">Something to say? Leave a comment here!</label><br>
+                <textarea id="comment_content"
+                name="comment_content"
+                rows="6"
+                cols="50">
+                </textarea><br>
+                <input type="submit" id="submit" value="Add Comment">
+            </form>
+        </div>
+        <div class="post_comment_block">
+            {% if comments %}
+            <h3>Comments:</h3>
+            <ul id="comments">
+                {% for comment in comments %}
+                <li>{{ comment.content }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </section>
+    
 {% endblock %}

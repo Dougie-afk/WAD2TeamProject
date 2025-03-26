@@ -15,8 +15,9 @@
                 height: 40px;
                 margin: 0;
             }
-            #link {
-                color:rgb(176, 218, 255);
+            .navbar_element {
+                color:white;
+                display: inline;
             } 
             #search_bar {
                 display: inline;
@@ -28,22 +29,29 @@
             {% endblock %}
         </style> <!--I know it's red, but I promise that's supposed to be like that -Liam-->
 
+        <script>
+            {% block script_block %}
+
+            {% endblock %}
+        </script>
+
         
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     </head>
 
     <body>
         <div id="navigation">
-            <h1 style="display: inline; color:rgb(176, 218, 255);">Threadly | </h1>
-            <a id = "link" href="{% url 'Threadly:index' %}">Home</a>
-            <a id = "link" href="{% url 'Threadly:trending' %}">Trending</a>
+            <h1 class="navbar_element">Threadly | </h1>
+            <a class="navbar_element" href="{% url 'Threadly:index' %}">Home</a>
+            <a class="navbar_element" href="{% url 'Threadly:categories' %}">Categories</a>
+            <a class="navbar_element" href="{% url 'Threadly:trending' %}">Trending</a>
             {% if user.is_authenticated %}
-                <a id = "link" href="{% url 'Threadly:account' %}">Account</a>
-                <a id = "link" href="{% url 'Threadly:create_post' %}">Create Post</a>
-                <a id = "link" href="{% url 'Threadly:logout' %}">Logout</a>
+                <a class="navbar_element"" href="{% url 'Threadly:account' %}">Account</a>
+                <a class="navbar_element" href="{% url 'Threadly:create_post' %}">Create Post</a>
+                <a class="navbar_element" href="{% url 'Threadly:logout' %}">Logout</a>
             {% else %}
-                <a id = "link" href="{% url 'Threadly:login' %}">Login</a>
-                <a id = "link" href="{% url 'Threadly:signup' %}">Sign Up</a>
+                <a class="navbar_element" href="{% url 'Threadly:login' %}">Login</a>
+                <a class="navbar_element" href="{% url 'Threadly:signup' %}">Sign Up</a>
             {% endif %}
             <form id="search_bar" method="GET" action="{% url 'Threadly:search' %}">
                 <input type="text" name="q" placeholder="Search" size="20" />
