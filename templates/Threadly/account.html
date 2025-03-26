@@ -1,0 +1,18 @@
+{% extends 'Threadly/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ user.username }}
+{% endblock %}
+
+{% block body_block %}
+ <h1>{{ user.username }}</h1>
+ 
+ <div class="profile_content_block">
+    <img src='{{ user.profilePictureURL }}' alt="User's profile picture">
+ </div>
+ <div class="profile_content_block">
+    <h3>Followers: {{ user.follows }}</h3>
+    <h3>Last Logged in: {{ user.last_login }}</h3>
+ </div>
+{% endblock %}
