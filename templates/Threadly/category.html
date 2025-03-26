@@ -8,6 +8,7 @@
 {% block body_block %}
     <!--Content-->
     <h1>{{ category.title }}</h1>
+    <p>Something to share? <a href="{% url 'Threadly:create_post' %}">Create a post!</a></p>
     {% if posts %}
     <ul>
         {% for post in posts %}
