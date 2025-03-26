@@ -14,6 +14,7 @@
         <p>{{ post.content }}</p>
         <div>
             <form id="like_button" method="post" action="">
+                {% csrf_token %} <!-- This fixes the like button token issue (Dont know why)-->
                 <!--TODO: Give appropriate action to like the post-->
                 <input id="submit" type="submit" value="Like the post!">
             </form>
@@ -22,6 +23,7 @@
     <section>
         <div class="post_comment_block">
             <form id="add_comment" method="post" action="">
+                {% csrf_token %}
                 <!--TODO: Give appropriate action to add comment to post-->
                 <label for="comment_content">Something to say? Leave a comment here!</label><br>
                 <textarea id="comment_content"

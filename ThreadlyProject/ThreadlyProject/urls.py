@@ -21,5 +21,6 @@ import Threadly.urls
 urlpatterns = [
     path('Threadly/',include(Threadly.urls)),
     path('admin/', admin.site.urls),
+    path('',views.index,name='index')
 
 ]
