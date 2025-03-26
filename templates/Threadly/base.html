@@ -18,7 +18,10 @@
             #link {
                 color:rgb(176, 218, 255);
             } 
-
+            #search_bar {
+                display: inline;
+                align-items: center;
+            }
             
             {% block style_block %}
             
@@ -43,6 +46,10 @@
                 <a id = "link" href="{% url 'Threadly:login' %}">Login</a>
                 <a id = "link" href="{% url 'Threadly:signup' %}">Sign Up</a>
             {% endif %}
+            <form id="search_bar" method="GET" action="{% url 'Threadly:search' %}">
+                <input type="text" name="q" placeholder="Search" size="20" />
+                <input type="submit" name="submit" value="Search">
+            </form>
         </div>
         <section id="main_div">
             {% block body_block %}

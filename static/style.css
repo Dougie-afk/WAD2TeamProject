@@ -12,6 +12,16 @@ body, html {
     align-self: center;
 }
 
+.profile_content_block {
+    display: inline-block;
+    width: 40%;
+}
+
+.post_comment_block {
+    display: inline-block;
+    width: 40%;
+}
+
 #main_div {
     background-color: white;
     width: 80%;
