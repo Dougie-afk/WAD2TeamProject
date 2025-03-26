@@ -13,10 +13,17 @@
  </div>
  <div class="profile_content_block">
    {% if user.follows.exists  %}
-    <h3>Following: {{ user.follows }}</h3>
+    <h3>Following:</h3>
+    <ul>
+      {% for thread in user.follows.all %}
+        <li style="list-style-type: none;">{{ thread.title }}</li>
+      {% endfor %}
+    </ul>
+      
     {% else %}
       <h3>Not following any Threads!</h3>
     {% endif %}
-    <h3>Last Logged in: {{ user.last_login }}</h3>
+   
  </div>
+ <h3>Last Logged in: {{ user.last_login }}</h3>
 {% endblock %}

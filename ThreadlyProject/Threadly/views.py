@@ -33,7 +33,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            return redirect('Threadly:personalized_feed')
+            return redirect('Threadly:account')
         else:
             return HttpResponse("Invalid login details")
     return render(request, 'Threadly/login.html')
