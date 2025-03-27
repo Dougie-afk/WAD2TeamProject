@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'image', 'threadID')#
+        fields = ('title', 'content', 'image', 'threadID')
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(help_text="Enter your comment.")

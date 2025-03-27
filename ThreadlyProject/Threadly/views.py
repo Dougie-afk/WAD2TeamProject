@@ -5,6 +5,7 @@ from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 import cloudinary.uploader
 
 def index(request):
@@ -88,12 +89,7 @@ def show_category(request, slug):
 def show_post(request, post_id):
     post = get_object_or_404(Post, postID=post_id)
     comments = Comments.objects.filter(postID=post)
-    return render(request, 'Threadly/post.html', {'post': post, 'comments': comments})
-# Add a comment (login required)
-@login_required
-def add_comment(request, post_id):
-    post = get_object_or_404(Post, postID=post_id)
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -103,7 +99,13 @@ def add_comment(request, post_id):
             return redirect('Threadly:show_post', post_id=post_id)
     else:
         form = CommentForm()
-    return render(request, 'Threadly/add_comment.html', {'form': form, 'post': post})
+    
+    return render(request, 'Threadly/post.html', {
+        'post': post,
+        'comments': comments,
+        'form': form
+    })
+
 # Follow Topics (login required)
 @login_required
 def follow_thread(request, thread_id):
@@ -115,3 +117,10 @@ def follow_thread(request, thread_id):
 def upload_image(file):
     result = cloudinary.uploader.upload(file)
     return result['secure_url']
+@require_POST
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, postID=post_id)
+    post.likes += 1
+    post.save()
+    return redirect('Threadly:show_post', post_id=post_id)
