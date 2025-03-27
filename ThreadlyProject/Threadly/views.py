@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.http import require_POST
+from django.forms.models import model_to_dict
+
 from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse
-from django.views.decorators.http import require_POST
+
 import cloudinary.uploader
 
 def index(request):
@@ -79,15 +82,17 @@ def create_post(request):
         form = PostForm()
     return render(request, 'Threadly/create_post.html', {'form': form})
 
-@login_required
-def add_comment(request, post_id):
-    content = request.POST.get('comment_content')
-    user_id = request.user
-    post = get_object_or_404(Post, postID=post_id)
-    comment = Comments.objects.create(commentContent=content, userID=user_id, postID=post)
-    comment.save()
-    
-    return redirect('Threadly:show_post', post_id=post_id)
+#@login_required
+#def add_comment(request, post_id):
+#    if request.method == "POST":
+#        content = request.POST.get('comment_content')
+#        user_id = request.user
+#        post = get_object_or_404(Post, postID=post_id)
+#        comment = Comments.objects.create(commentContent=content, userID=user_id, postID=post)
+#        comment.save()
+#        return JsonResponse(model_to_dict(comment))
+#    
+#    return redirect('Threadly:show_post', post_id=post_id)
 
 # Show posts under categories
 def show_category(request, slug):
@@ -100,20 +105,15 @@ def show_post(request, post_id):
     post = get_object_or_404(Post, postID=post_id)
     comments = Comments.objects.filter(postID=post)
     if request.method == 'POST' and request.user.is_authenticated:
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.userID = request.user
-            comment.postID = post
-            comment.save()
-            return redirect('Threadly:show_post', post_id=post_id)
-    else:
-        form = CommentForm()
-    
+        content = request.POST.get('comment_content')
+        user_id = request.user
+        comment = Comments.objects.create(commentContent=content, userID=user_id, postID=post)
+        comment.save()
+        #return JsonResponse(model_to_dict(comment))
+    #else:
     return render(request, 'Threadly/post.html', {
         'post': post,
         'comments': comments,
-        'form': form
     })
 
 # Follow Topics (login required)
