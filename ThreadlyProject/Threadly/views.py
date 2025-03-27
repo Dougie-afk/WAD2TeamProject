@@ -79,6 +79,16 @@ def create_post(request):
         form = PostForm()
     return render(request, 'Threadly/create_post.html', {'form': form})
 
+@login_required
+def add_comment(request, post_id):
+    content = request.POST.get('comment_content')
+    user_id = request.user
+    post = get_object_or_404(Post, postID=post_id)
+    comment = Comments.objects.create(commentContent=content, userID=user_id, postID=post)
+    comment.save()
+    
+    return redirect('Threadly:show_post', post_id=post_id)
+
 # Show posts under categories
 def show_category(request, slug):
     category = get_object_or_404(Thread, slug=slug)
