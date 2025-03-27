@@ -7,18 +7,30 @@
 
 {% block script_block %}
 <script type="text/javascript">
-    function addComment(){
-        try {
-            var commentBox = document.getElementById("comment_content");
-            var commentList = document.getElementById("comments");
-            var li = document.createElement("li");
+    $("#add_comment").submit(function(event){
+        event.preventDefault();
+        var serializedData = $(this).serialize();
 
-            li.innerHTML = commentBox.value;
-            commentList.appendChild(li);
-        } catch {
-            alert("Sorry, there was a problem adding your comment. Please refresh the page to make sure it was added")
-        }
-    }
+        $.ajax({
+            type:"POST",
+            url:"{% url 'Threadly:add_comment' post.postID %}",
+            data: serializedData,
+            success: function() {
+                try {
+                    alert(data);
+                    var commentBox = document.getElementById("comment_content");
+                    var commentList = document.getElementById("comments");
+                    var li = document.createElement("li");
+
+                    li.innerHTML = commentBox.value;
+                    commentList.appendChild(li);
+                } catch {
+                    alert("Sorry, there was a problem adding your comment. Please refresh the page to make sure it was added");
+                }
+            }
+        });
+    });
+    
 </script>
 {% endblock %}
 
@@ -43,8 +55,7 @@
     <section>
         <div class="post_comment_block">
         {% if user.is_authenticated %}
-            <!--Delete onSubmit="addComment(); return false"-->
-            <form id="add_comment" method="post" action="{% url 'Threadly:add_comment' post.postID %}">
+            <form id="add_comment" method="post">
                 {% csrf_token %}
                 <!--TODO: Give appropriate action to add comment to post-->
                 <label for="comment_content">Something to say? Leave a comment here!</label><br>
