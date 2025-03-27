@@ -40,6 +40,7 @@
     </section>
     <section>
         <div class="post_comment_block">
+        {% if user.is_authenticated %}
             <form id="add_comment" method="post" onSubmit="addComment(); return false">
                 {% csrf_token %}
                 <!--TODO: Give appropriate action to add comment to post-->
@@ -51,6 +52,9 @@
                 </textarea><br>
                 <input name="Submit" type="submit" id="submit" value="Add Comment">
             </form>
+        {% else %}
+            <strong>Login to add a comment!</strong>
+        {% endif %}
         </div>
         <div class="post_comment_block">
             
