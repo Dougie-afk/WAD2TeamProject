@@ -16,7 +16,7 @@
             li.innerHTML = commentBox.value;
             commentList.appendChild(li);
         } catch {
-            alert("Sorry, there was a problem adding your comment")
+            alert("Sorry, there was a problem adding your comment. Please refresh the page to make sure it was added")
         }
     }
 </script>
@@ -32,6 +32,7 @@
         <div>
             <form id="like_button" method="post" action="{% url 'Threadly:like_post' post.postID %}">
                 {% csrf_token %} <!-- This fixes the like button token issue (Dont know why)-->
+                <!--It's because all post forms require the user to be signed in and have that token-->
                 <!--TODO: Give appropriate action to like the post-->
                 <input id="submit" type="submit" value="Like the post!">
             </form>
@@ -39,7 +40,8 @@
     </section>
     <section>
         <div class="post_comment_block">
-            <form id="add_comment" method="post" onSubmit="addComment(); return false">
+        {% if user.is_authenticated %}
+            <form id="add_comment" method="post" onSubmit="addComment(); return false" action="{% url 'Threadly:add_comment' post.postID %}">
                 {% csrf_token %}
                 <!--TODO: Give appropriate action to add comment to post-->
                 <label for="comment_content">Something to say? Leave a comment here!</label><br>
@@ -50,6 +52,9 @@
                 </textarea><br>
                 <input name="Submit" type="submit" id="submit" value="Add Comment">
             </form>
+        {% else %}
+            <strong>Login to add a comment!</strong>
+        {% endif %}
         </div>
         <div class="post_comment_block">
             
