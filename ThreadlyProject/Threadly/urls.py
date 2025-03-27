@@ -18,7 +18,7 @@ urlpatterns = [
     path('post/<int:post_id>/add_comment', views.add_comment, name='add_comment'),
     path('follow-thread/<int:thread_id>/', views.follow_thread, name='follow_thread'),
     path('post/<int:post_id>/like/', views.like_post, name='like_post'),
-    
+    path('post/<int:post_id>/add_comment/', views.add_comment, name='add_comment'),
     
     
 ]

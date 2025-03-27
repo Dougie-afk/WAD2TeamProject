@@ -43,7 +43,8 @@
     <section>
         <div class="post_comment_block">
         {% if user.is_authenticated %}
-            <form id="add_comment" method="post" onSubmit="addComment()" action="{% url 'Threadly:add_comment' post.postID %}">
+            <!--Delete onSubmit="addComment(); return false"-->
+            <form id="add_comment" method="post" action="{% url 'Threadly:add_comment' post.postID %}">
                 {% csrf_token %}
                 <!--TODO: Give appropriate action to add comment to post-->
                 <label for="comment_content">Something to say? Leave a comment here!</label><br>

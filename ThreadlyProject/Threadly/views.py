@@ -134,3 +134,19 @@ def like_post(request, post_id):
     post.likes += 1
     post.save()
     return redirect('Threadly:show_post', post_id=post_id)
+@login_required
+def add_comment(request, post_id):
+    post = get_object_or_404(Post, postID=post_id)
+    if request.method == 'POST':
+        # Get comments
+        comment_content = request.POST.get('comment_content')
+        if comment_content:
+            # Create comments and save them to the database
+            Comments.objects.create(
+                commentContent=comment_content,
+                postID=post,
+                userID=request.user
+            )
+        return redirect('Threadly:show_post', post_id=post_id)
+    # If it is not a POST request, redirect to the Post details page
+    return redirect('Threadly:show_post', post_id=post_id)
