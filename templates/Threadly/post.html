@@ -21,7 +21,7 @@
     }
 </script>
 {% endblock %}
-<p>Likes: {{ post.likes }}</p>
+
 {% block body_block %}
     <section>
         <h1>{{ post.title }}</h1>
@@ -29,6 +29,8 @@
             <img class="post_photo" src="{{ post.photoContent }}" alt="Post photo">
         {% endif %}
         <p>{{ post.content }}</p>
+        <hr>
+        <p>Likes: {{ post.likes }}</p>
         <div>
             <form id="like_button" method="post" action="{% url 'Threadly:like_post' post.postID %}">
                 {% csrf_token %} <!-- This fixes the like button token issue (Dont know why)-->
@@ -41,7 +43,7 @@
     <section>
         <div class="post_comment_block">
         {% if user.is_authenticated %}
-            <form id="add_comment" method="post" onSubmit="addComment(); return false" action="{% url 'Threadly:add_comment' post.postID %}">
+            <form id="add_comment" method="post" onSubmit="addComment()" action="{% url 'Threadly:add_comment' post.postID %}">
                 {% csrf_token %}
                 <!--TODO: Give appropriate action to add comment to post-->
                 <label for="comment_content">Something to say? Leave a comment here!</label><br>
@@ -62,8 +64,7 @@
             <ul class="invisible_list" id="comments">
             {% if comments %}
                 {% for comment in comments %}
-                <hr>
-                <li>{{ comment.content }}</li>
+                <li>{{ comment.commentContent }}</li>
                 {% endfor %}
             {% endif %}
             </ul>
