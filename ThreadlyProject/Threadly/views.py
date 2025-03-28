@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
 from django.forms.models import model_to_dict
+from django.core import serializers
 
 from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
@@ -102,6 +103,7 @@ def show_post(request, post_id):
         user_id = request.user
         comment = Comments.objects.create(commentContent=content, userID=user_id, postID=post)
         comment.save()
+        comment_data.append({'user': comment.userID, 'comment': comment})
 
     return render(request, 'Threadly/post.html', {
         'post': post,
