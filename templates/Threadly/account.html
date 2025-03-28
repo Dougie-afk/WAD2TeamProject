@@ -16,7 +16,7 @@
     <h3>Following:</h3>
     <ul>
       {% for thread in user.follows.all %}
-        <li style="list-style-type: none;">{{ thread.title }}</li>
+        <li class="invisible_list">{{ thread.title }}</li>
       {% endfor %}
     </ul>
       
