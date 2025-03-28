@@ -8,9 +8,11 @@
 {% block body_block %}
  <h1>{{ user.username }}</h1>
  
- <div class="profile_content_block">
-    <img src='{{ user.profilePictureURL }}' alt="User's profile picture">
- </div>
+ {% if user.profilePictureURL %}
+  <div class="profile_content_block">
+      <img src='{{ user.profilePictureURL }}' alt="User's profile picture">
+  </div>
+ {% endif %}
  <div class="profile_content_block">
    {% if user.follows.exists  %}
     <h3>Following:</h3>

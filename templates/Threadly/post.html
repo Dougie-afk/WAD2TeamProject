@@ -43,12 +43,16 @@
         <hr>
         <p>Likes: {{ post.likes }}</p>
         <div>
+        {% if user.is_authenticated %}
             <form id="like_button" method="post" action="{% url 'Threadly:like_post' post.postID %}">
                 {% csrf_token %} <!-- This fixes the like button token issue (Dont know why)-->
                 <!--It's because all post forms require the user to be signed in and have that token-->
                 <!--TODO: Give appropriate action to like the post-->
                 <input id="submit" type="submit" value="Like the post!">
             </form>
+        {% else %}
+            <strong>Login to like the post</strong>
+        {% endif %}
         </div>
     </section>
     <section>
