@@ -15,24 +15,6 @@ def populate_data():
     user5 = User.objects.get_or_create(username="Dougie",profilePictureURL="http://example.com/user5.jpg")[0]
     user6 = User.objects.get_or_create(username="Stoney",profilePictureURL="http://example.com/user6.jpg")[0]
 
-    #threads = [
-    #    {"title": "Java",
-    #     "photo": "http://example.com/thread1.jpg"},
-    #     {"title": "Python",
-    #     "photo": "http://example.com/thread2.jpg"},
-    #     {"title": "Rust",
-    #     "photo": "http://example.com/thread3.jpg"},
-    #     {"title": "C",
-    #     "photo": "http://example.com/thread4.jpg"},
-    #     {"title": "C++",
-    #     "photo": "http://example.com/thread5.jpg"},
-    #     {"title": "JavaScript",
-    #     "photo": "http://example.com/thread5.jpg"}
-    #]
-
-    #for t in threads:
-    #    add_Thread(t["title"], t["photo"])
-
     thread1 = Thread.objects.get_or_create(title="Java",threadPhoto="http://example.com/thread1.jpg")[0]
     thread2 = Thread.objects.get_or_create(title="Python",threadPhoto="http://example.com/thread2.jpg")[0]
     thread3 = Thread.objects.get_or_create(title="Rust",threadPhoto="http://example.com/thread3.jpg")[0]
@@ -45,16 +27,6 @@ def populate_data():
     user3.follows.add(thread1,thread6)
     user4.follows.add(thread3)
     user5.follows.add(thread2)
-
-    #javaPosts = [
-    #    {"title": "Java Issue",
-    #     "content": "Java Issue Post content"}
-    #]
-
-    #pythonPosts = [
-    #    {"title": "Python issue",
-    #     "content": "Hey, why won't it let me have different levels of indentation?"}
-    #]
 
     post1 = Post.objects.get_or_create(title="Java Issue",content="Java Issue Post content",photoContent="http://example.com/post1.jpg",threadID = thread1,userID=user1)[0]
     post2 = Post.objects.get_or_create(title="Python issue",content="Python issue post content",photoContent="http://example.com/post1.jpg",threadID=thread2,userID=user5)[0]
