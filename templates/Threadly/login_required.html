@@ -1,0 +1,6 @@
+{% extends 'Threadly/base.html' %}
+{% block title_block %} Login Required {% endblock %}
+{% block body_block %}
+<h2>You must be logged in to perform this action.</h2>
+<p>Please <a href="{% url 'Threadly:login' %}">login</a> or <a href="{% url 'Threadly:signup' %}">sign up</a> to continue.</p>
+{% endblock %}

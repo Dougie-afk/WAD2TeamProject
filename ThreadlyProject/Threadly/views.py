@@ -7,6 +7,9 @@ from django.views.decorators.http import require_POST
 from django.forms.models import model_to_dict
 from django.core import serializers
 
+from functools import wraps
+
+
 from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
 
@@ -15,6 +18,14 @@ import cloudinary.uploader
 def index(request):
     categories = Thread.objects.order_by('-threadID')[:5]  
     return render(request, 'Threadly/index.html', {'categories': categories})
+def login_required_message(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            # Render a simple template that prompts the user to log in
+            return render(request, 'Threadly/login_required.html')
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
 
 def categories(request):
     categories = Thread.objects.order_by('-threadID')  
@@ -47,7 +58,7 @@ def user_login(request):
             return HttpResponse("Invalid login details")
     return render(request, 'Threadly/login.html')
 
-@login_required
+@login_required_message
 def user_logout(request):
     logout(request)
     return redirect('Threadly:index')
@@ -63,12 +74,12 @@ def search(request):
     return render(request, 'Threadly/search_results.html', {'results': results})
 
 
-@login_required
+@login_required_message
 def account(request):
     user = request.user
     return render(request, 'Threadly/account.html', {'user': user})
 
-@login_required
+@login_required_message
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -111,7 +122,7 @@ def show_post(request, post_id):
     })
 
 # Follow Topics (login required)
-@login_required
+@login_required_message
 def follow_thread(request, thread_id):
     thread = get_object_or_404(Thread, threadID=thread_id)
     request.user.follows.add(thread)
@@ -122,13 +133,13 @@ def upload_image(file):
     result = cloudinary.uploader.upload(file)
     return result['secure_url']
 @require_POST
-@login_required
+@login_required_message
 def like_post(request, post_id):
     post = get_object_or_404(Post, postID=post_id)
     post.likes += 1
     post.save()
     return redirect('Threadly:show_post', post_id=post_id)
-@login_required
+@login_required_message
 def add_comment(request, post_id):
     post = get_object_or_404(Post, postID=post_id)
     if request.method == 'POST':
@@ -144,3 +155,4 @@ def add_comment(request, post_id):
         return redirect('Threadly:show_post', post_id=post_id)
     # If it is not a POST request, redirect to the Post details page
     return redirect('Threadly:show_post', post_id=post_id)
+
