@@ -79,7 +79,7 @@
             <ul class="invisible_list" id="comments">
             {% if comments %}
                 {% for comment in comments %}
-                <li>{{ comment.commentContent }}</li>
+                <li>{{ comment.user.username }} | {{ comment.comment.commentContent }}</li>
                 {% endfor %}
             {% endif %}
             </ul>
