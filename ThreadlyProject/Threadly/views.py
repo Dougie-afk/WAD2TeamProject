@@ -5,7 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
 from django.forms.models import model_to_dict
+from django.core import serializers
+
 from functools import wraps
+
+
 from .models import Thread, Post, Comments, User
 from .forms import UserForm, PostForm, CommentForm
 
@@ -100,14 +104,21 @@ def show_category(request, slug):
 def show_post(request, post_id):
     post = get_object_or_404(Post, postID=post_id)
     comments = Comments.objects.filter(postID=post)
+    comment_data = []
+    for c in comments:
+        user = c.userID
+        comment_data.append({'user': user, 'comment': c})
+
     if request.method == 'POST' and request.user.is_authenticated:
         content = request.POST.get('comment_content')
         user_id = request.user
         comment = Comments.objects.create(commentContent=content, userID=user_id, postID=post)
         comment.save()
+        comment_data.append({'user': comment.userID, 'comment': comment})
+
     return render(request, 'Threadly/post.html', {
         'post': post,
-        'comments': comments,
+        'comments': comment_data
     })
 
 # Follow Topics (login required)
